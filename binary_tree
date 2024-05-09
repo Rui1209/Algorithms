@@ -1,0 +1,70 @@
+class TreeNode:
+    def __init__(self, name):
+        self.name = name
+        self.children_indices = []
+
+    # 后序遍历函数
+    def postorder_traversal(self, tree, back=False):
+        if not back:
+            for child_index in self.children_indices:
+                if isinstance(child_index, list):
+                    for index in child_index:
+                        tree[index].postorder_traversal(tree)
+                else:
+                    tree[child_index].postorder_traversal(tree)
+            print(self.name)
+        else:
+            print(self.name)
+            for child_index in reversed(self.children_indices):
+                if isinstance(child_index, list):
+                    for index in child_index:
+                        tree[index].postorder_traversal(tree, back=True)
+                else:
+                    tree[child_index].postorder_traversal(tree, back=True)
+
+# 创建节点
+tree = [
+    TreeNode("car_model"),
+    TreeNode("car_body"),   # 1
+    TreeNode("car_wheel_1"),  # 2
+    TreeNode("car_hold"),   # 3
+    TreeNode("hold_bearing_merger"),  # 4
+    TreeNode("bearing_merger"),       # 5
+    TreeNode("hold_merger"),          # 6
+    TreeNode("fixed_1_merger"),       # 7
+    TreeNode("fixed_2_merger"),       # 8
+    TreeNode("bearing"),              # 9
+    TreeNode("fixed"),                # 10
+    TreeNode("hold") ,                # 11
+    TreeNode("merger_car_wheel_1"),   # 12
+    TreeNode("merger_car_wheel_2"),#13
+    TreeNode("motor"),   # 14
+    TreeNode("wheel"), #15
+    TreeNode("long"), #16
+    TreeNode("support_merger"),#17
+    TreeNode("support-11"),#18
+    TreeNode("car_wheel_2")#19
+]
+
+# 建立父子关系
+tree[0].children_indices.extend([1, 2, 3])
+tree[1].children_indices.extend([4, 7, 8])
+tree[4].children_indices.extend([5, 6])
+tree[5].children_indices.extend([9, 10])
+tree[6].children_indices.extend([10, 11])
+tree[7].children_indices.extend([10, 10])
+tree[8].children_indices.extend([10, 10])
+
+tree[2].children_indices.extend([12, 15])
+tree[12].children_indices.extend([14,16])
+tree[19].children_indices.extend([13,15])
+tree[13].children_indices.extend([14,16])
+
+tree[17].children_indices.extend([18,10])
+tree[3].children_indices.extend([10,17])
+
+# 正序后序遍历
+tree[0].postorder_traversal(tree)
+print("\n")
+# 逆序后序遍历
+tree[0].postorder_traversal(tree, back=True)
