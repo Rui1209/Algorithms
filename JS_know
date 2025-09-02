@@ -19,4 +19,51 @@ const arr_2 = new Array(arrayLength)
 //static method
 Array.isArray(value) //判斷是否為array
 Array.of(item_1, item_2) //建立array項目
+Array=[0,1,2,3,4,5,6,7,8,9]
+slice(0,-3)  ==>[0,1,2,3,4,5,6] //切掉-1,-2,-3
+
+=================================
+https://clairechang.tw/2024/01/23/typescript/ts-interface-vs-type/
+TypeScript
+Interface 
+目的：定義物件型別
+不能直接宣告基本型別、元組、列舉與聯合型別
+# 當重複宣告同一個變數時，支援擴展和合併
+*注意: TS裡面用;分隔 JS裡面用:分隔
+interface User{
+   userID:number;
+   name: string;
+}
+interface User{
+      age: number;
+}
+const User01: User={
+     userID: 001,
+     name: "ada",
+    age: 12,
+}
+console.log.(User01)
+//Object() {userID: 001, name: "ada", age: 12}
+================================
+Type
+目的：賦予型別一個新的名稱
+可以直接宣告基本型別、Array、列舉、聯合型別 (type | type)、物件(obj)以及複雜型別
+不可以重複宣告，不支援擴展，但可以透過 & 交集來組合型別
+
+enum 列舉
+特性：不用再內容和名稱之間加等號。無指定自訂為0
+目的：定義同系列常數，常數保管特定的Value
+//列舉型別的類型
+enum ColorStyle {
+  Red = "red",
+  Blue = "blue",
+}
+type Color = ColorStyle;
+const color: Color = ColorStyle.Red;
+console.log(color);
+
+
+
+
+
 
