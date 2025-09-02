@@ -1,0 +1,22 @@
+創建一個vutify專案
+CMD
+- npm create
+  -Recommended
+  -Yes
+  -npm
+  -Yes
+------------------
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of
+常用函式
+*string*
+splite()
+
+*Array*
+//建構array
+const arr_1 = []
+const arr_2 = new Array(arrayLength)
+
+//static method
+Array.isArray(value) //判斷是否為array
+Array.of(item_1, item_2) //建立array項目
+
