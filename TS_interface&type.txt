@@ -1,0 +1,102 @@
+https://clairechang.tw/2024/01/23/typescript/ts-interface-vs-type/
+TypeScript
+================================
+Interface 
+目的：定義物件型別
+不能直接宣告基本型別、元組、列舉與聯合型別
+# 當重複宣告同一個變數時，支援擴展和合併
+*注意: TS裡面用;分隔 JS裡面用:分隔
+interface User{
+   userID:number;
+   name: string;
+}
+interface User{
+      age: number;
+}
+const User01: User={
+     userID: 001,
+     name: "ada",
+    age: 12,
+}
+console.log.(User01)
+//Object() {userID: 001, name: "ada", age: 12}
+================================
+Type
+目的：賦予型別一個新的名稱
+可以直接宣告基本型別、Array、列舉、聯合型別 (type | type)、物件(obj)以及複雜型別
+不可以重複宣告，不支援擴展，但可以透過 & 交集來組合型別
+
+enum 列舉
+特性：不用再內容和名稱之間加等號。無指定自訂為0
+目的：定義同系列常數，常數保管特定的Value
+//列舉型別的類型
+enum ColorStyle {
+  Red = "red",
+  Blue = "blue",
+}
+type Color = ColorStyle;
+const color: Color = ColorStyle.Red;
+console.log(color);
+
+=================================
+泛型
+目的：為類型提供變數，未帶泛型的陣列可以包含任何內容，但有泛型只可描述所包含的值
+type name = Array<*type*>;
+	type StringArray = Array<string>;
+	type ObjectNameArray = Array<{name: string}>; =>代表使用只能有name: string的結構
+
+interface name<尚未指定的type>{
+	name: string;
+	age: 尚未指定的type;
+}
+const User: name<指定type> = {
+	name: "string context",
+	age: "指定的type context",
+}
+
+=====================================
+特殊
+Partial<T> 可以將interface定義的項目變成可選擇，非必填
+`${變數}`=>將變數寫成字串使用 (用於有指定型別的狀態)
+=====================================
+function
+顯示類型
+//在函式參數指定時，一定要指定型別，不然會報any type錯誤
+function name(參數類型註解) : 回傳類型註解{
+	邏輯操作內容
+};
+
+function greet(name: string, date:Date): void{
+	console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+greet("test", new Date("2024-01-09"));
+=====================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
