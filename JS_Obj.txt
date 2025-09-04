@@ -1,0 +1,66 @@
+Object
+---基本語法---
+let 變數名稱 = {
+	key: value,
+	key_2: value, 
+};
+---新增刪除物件內的屬性或值---
+變數名稱.key = 變數名稱                 //新增無資料屬性key在變數物件中
+變數名稱.key = 變數名稱.key(已有) //新增已有的key資料到新增的屬性中
+let new_變數名稱={...變數名稱, key: value}               //新增物件的屬性和值
+delect 變數名稱.key                         //刪除物件內的屬性
+變數名稱.key = value                      //修改原始屬性的值
+let new_變數名稱={...變數名稱, key(已有): value}     //修改原始屬性的值
+let new_變數名稱={key(已有): value, ...someProperies}=變數名稱  //new_變數物件中無price屬性，其餘屬性皆留存
+
+---setter & getter---(又稱類別存取器)
+目的："存"或"取"物件屬性值，控制類別屬性的存取與修改
+private 修飾符寫法
+let Bag={
+  name: "LV",
+  price: 100,
+  get priceTax(){     //getter寫法，當指定prcie價格時，get會得到新的價格，回傳計算後的值
+    return Number(this.price)*1.2;
+  }  
+};
+
+let Hat={
+  name:"hat",
+  _price: 100,  //private 虛擬屬性
+  PriceTax: 100*1.2,
+  set price(newPrice){  //setter寫法，讀取新的價格，計算後丟值給getter處理
+    this._price = newPrice;
+    this.PriceTax = this._price*1.2; 
+  },
+  get price(){   //getter寫法，當指定prcie價格時，get會得到新的價格，回傳計算後的值
+    return this._price;
+  }
+}
+hat.price = 120 //新的價格
+console.log(`Bag Price ${Bag.price} ${Bag.priceTax}`) 
+
+---物件的方法(method)宣告---
+方法1
+let Hat ={
+	func = function( param){
+		//定義函式的內容
+	}
+}
+方法2 (簡潔)
+let Hat ={
+	func( param){
+		//定義函式的內容
+	}
+}
+方法3(lambda寫法)
+let Hat: ()=>//定義函式的內容
+
+---this關鍵字的特性---
+特性：this關鍵字非指向函式物件，而是指向全域物件(global object:在任何地方都能存取)
+如果要用this關鍵字，method要用函式表達式
+Func.prototype.call(thisArg[, arg1[ ,arg2]])    //使用給定的 this 參數以及分別給定的參數來呼叫某個函數
+Func.apply(thisArg, [argsArray] )                  //呼叫一個以 this 的代表值和一個陣列形式的值組
+!!! 箭頭函數沒有自己的this值，且沒有被一般函式包起來，且全域物件並無對應的屬性，所以會顯示undefined
+
+
+

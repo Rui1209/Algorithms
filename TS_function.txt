@@ -1,0 +1,22 @@
+=====================================
+特殊
+Partial<T> 可以將interface定義的項目變成可選擇，非必填
+`${變數}`=>將變數寫成字串使用 (用於有指定型別的狀態)
+=====================================
+function //函式定義的語法
+顯示類型
+//在函式參數指定時，一定要指定型別，不然會報any type錯誤
+function name(參數類型註解) : 回傳類型註解{
+	邏輯操作內容
+};
+
+function greet(name: string, date:Date): void{
+	console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+greet("test", new Date("2024-01-09"));
+=====================================
+匿名函數
+const name = (arg: type ): type => 
+
+//指定泛型匿名函數
+// IIFE

@@ -1,0 +1,87 @@
+Prototype(原型)物件
+定義：JS中沒有類別，所有物件都是連結到一個物件原型
+//定義物件原型方法
+let ProductProto = {
+  toString: function () {
+    return `toString: Nmae:${this.name}, Price:${this.price}`;
+  }
+};
+//hat物件範例
+let hat = {
+  name: "hat",
+  price: 100,
+  priceTax() {
+    return Number(this.price) * 1.2;
+  },
+};
+
+console.log(Object.getPrototypeOf(hat)) //取得hat的原型
+Object.setPrototypeOf(hat, ProductProto);  //設定物件原型的物件 *不推薦*
+console.log(hat.toString());
+---函式建構子產生新物件---
+用途：設定新物件、定義屬性與指派原型
+特色：主要是讓原型物件提供new關鍵字，建立新物件，因此不用寫return
+// 函式建構子(function constructor) =>建構原型
+let Product = function(name, price){
+  this.name= name;   //this定義新物件的屬性
+  this.price = price;
+  this.toString=function(){
+    return `toString Name:${this.name} Price:${this.price}`;
+  };
+};
+let hat = new Product("hat", 100); //用new 建構新的物件，用this的值去呼叫建構子，指派給hat變數
+console.log(hat);
+---串聯函式建構子----
+// Product 函式建構子
+let Product = function (name, price) {
+  this.name = name;
+  this.price = price;
+};
+// Product 原型
+Product.prototype.toString = function () {
+  return `toString Name:${this.name}, Price:${this.price}`;
+};
+// TaxProduct 函式建構子
+let TaxedProduce = function(name, price, taxRate){
+  Product.call(this, name, price);
+  this.taxRate = taxRate;
+};
+// 設置原型
+Object.setPrototypeOf(TaxedProduce.prototype, Product.prototype);
+// TaxProduct 原型 *關於稅率*
+TaxedProduce.prototype.getPriceTax = function(){
+  return Number(this.price)* this.taxRate;
+};
+// TaxProduct 原型 *關於顯示*
+TaxedProduce.prototype.toTexString = function(){
+  return `${this.toString} Tax:${this.taxRate}`;
+};
+// 創建新物件
+let hat = new TaxedProduce("hat", 100, 1.2);
+let boots = new Product("boots", 100);
+
+//由此可知TaxProduct 繼承Produce
+console.log(hat.toTexString());
+console.log(boots.toString());
+// 物件 instanceof 原型 檢查原型物件是否出現在某個物件的原型鏈中
+console.log(`hat -> TaxedProduce: ${hat instanceof TaxedProduce}`); 
+console.log(`boots -> Product ${boots instanceof Product}`);
+console.log(`hat -> Produce ${hat instanceof Product}`);
+console.log(`boots -> TaxedProduce ${boots instanceof TaxedProduce}`)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
