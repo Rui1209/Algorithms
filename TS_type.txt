@@ -13,8 +13,3 @@ any 任意型別
 
  === 嚴格相等
  !==  嚴格不相等
-
-
-老師
-想問一下
-以下Promise和Anonymous Functions(匿名函數)的概念

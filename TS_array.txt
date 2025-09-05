@@ -1,0 +1,62 @@
+TS ARRAY
+---指定陣列型別---
+let 參數名稱: type[] = [item, item_1, item_2];
+
+--Array的型別聯集---
+(type_1 | type_2)[]
+
+--陣列型別範例--
+const calculateTax = (amount: number): number => amount * 1.2;
+const writePrice = (product: string, price: number): void =>
+  console.log(`Price for ${product}, $${price.toFixed(2)}`);
+
+let prices: number[] = [100, 75, 50, 25];
+let ProductName: string[] = ["Hat", "Box", "LV", "TEST"];
+
+//運用for each去把每一個都拉出來，再進行填值
+prices.forEach((price, index) => {
+  const taxPrice = calculateTax(price);
+  const Name = ProductName[index];
+  writePrice(Name, taxPrice);
+});
+
+===tuple(元組)的運用=== //非JS有的
+定義：固定長度的陣列，其中每個元素可以是不同的型別
+//element內容須符合Type型別內容
+let 變數名稱: [type_1, type_2] = [element_1, element_2] 
+	let hat: [string, number] = ["Hat", 100] //元素值
+
+--範例--
+let boots: [string, number] = ["Boots", 200];
+
+boots.forEach((h: string | number) => {
+  typeof h == "string" ? console.log(`Name: ${h}`) : console.log(`Price: ${h}`);
+});
+
+===enum列舉值=== //非JS有的
+目的：透過一個名稱來存取一系列有特定名稱的常數值。
+enum 列舉名稱 {列舉值} ;
+
+--範例-- //跳過
+enum Product {}
+
+===字面值型別(literal value type)===
+定義：拿一組特定的值定義新的一種獨特型別
+目的：限制變數只能使用當中的某個值，常用於函式定義回傳或輸入對應值
+//其值只能是字面值型別的內容，如果非字面值內容，則會報錯
+//字面型別的type 可以混用
+let restrictedValue: 1 | 2 | 3 //字面值型別= 值;  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+三元算符(ternary operator)
+條件運算式 ? a : b //當條件運算達成時，true回傳a，false回傳b
+==============
+箭頭函式(arrow function) = lambda experssion
+(param_1, param_2) => {return param_1+param_2}
+(param_1, param_2) => return param_1+param_2
+(param_1, param_2) => param_1+param_2 //若return 只有一個參數，可以省略寫return
+param_1 = param_1+param_1  //若參數只有一個，則可省略參數的小括號
+( ) => 1 //沒有參數
+===============
+For 迴圈
+for (let 變數 = init ; 條件 ; 運算式){
+	//運算式
+}
+===============
+switch(){
+	case 結果_1:
+		//內容
+		break;
+	case 結果_2:
+		break;
+	case 結果_3:
+		break;
+	default:
+		//以上結果皆不相符
+}

@@ -21,10 +21,26 @@ const User01: User={
 console.log.(User01)
 //Object() {userID: 001, name: "ada", age: 12}
 ================================
-Type
+Type (型別別名)
 目的：賦予型別一個新的名稱
 可以直接宣告基本型別、Array、列舉、聯合型別 (type | type)、物件(obj)以及複雜型別
 不可以重複宣告，不支援擴展，但可以透過 & 交集來組合型別
+type 型別別名 = 型別
+
+---範例---
+
+type comboType = 1 | 2 | 3 | City.London;
+type comboTupleType = [string, number | boolean, comboType];
+
+let result: comboTupleType[] = [
+  ["Apple", 100, 2],
+  ["Oranges", true, City.London],
+];
+
+result.forEach((item: comboTupleType) => {
+  console.log(`Result:${item}`);
+});
+
 
 enum 列舉
 特性：不用再內容和名稱之間加等號。無指定自訂為0
