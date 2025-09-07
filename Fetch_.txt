@@ -1,0 +1,85 @@
+==耕雲自建工具包===
+Fetch (Web API)工具包
+目的：向伺服器發送網路請求，抓取資料或傳送資料
+---API---
+目的：存取和整合來自不同平台和系統的資料、應用程式和服務
+---API gateway---
+介面 FetchInit -->定義物件型別
+實例 createFech()
+說明：為一種服務、裝置或代理，可作為接受、轉換、路由和管理到後端服務的 API 流量的中介。
+運作模式
+    A[外部取用者\n(HTTP/HTTPS 請求)] --> B[API Gateway]
+    
+    B --> C[路由請求\n依據 URL/規則 → 微服務] //api gatway
+    C --> D[驗證請求來源\nmTLS / JWT / API Key] //refreshToken的部分
+    D --> E[授權與流量控制\n防止濫用與限流]
+
+    E --> F[轉換請求負載\n格式轉換、協定轉換]
+    F --> G[目標微服務]
+
+    G --> H[回應資料]
+    H --> I[轉換回應負載\n調整給外部使用者格式]
+    I --> J[返回外部取用者]
+
+    J --> K[監控與記錄\n效能 / 使用情況 / 問題分析]
+
+---系統登入週期(Login Session Lifecycle)---
+useSetLoginCycle()概念：使用者從登入 → 保持登入狀態 → 登出/過期 的整個過程。
+它依靠"瀏覽器的儲存機制"來維護登入資訊（例如 Token 或 Session ID）
+
+===sessionStorage(臨時登入狀態)===
+-常見用法：前端把 Token 存在 sessionStorage。
+-生命週期：只存在 瀏覽器分頁 (tab) 開啟期間，關掉分頁就消失。
+特性：
+1. 不會自動傳給伺服器（要手動加在 header，例如 Authorization: Bearer token）。
+2. 每個分頁獨立，開新分頁不會共享登入狀態。
+登入週期場景：
+1. 適合只希望登入狀態維持在 單一分頁 的應用。
+例如：網銀或線上考試系統，關閉視窗就強制登出。
+
+===localStorage(長期登入狀態)===
+-常見用法：把 Token 存在 localStorage。
+-生命週期：永久存在（除非手動刪除或程式清除）。
+特性：
+1. 不會自動帶給伺服器，需手動附加。
+2. 不受瀏覽器關閉影響，下次打開瀏覽器仍在。
+登入週期場景：
+適合「保持登入」的應用，例如社群網站或購物網站。
+但安全性比 Cookie 弱（容易被 XSS 攻擊竊取）。
+
+===cookie===
+-常見用法：伺服器登入後，會下發一個 Session ID 或 JWT 存在 Cookie 中
+-生命週期：由伺服器設定 Expires 或 Max-Age，決定多久過期。
+特性：
+1. 每次請求時 自動帶給伺服器。
+2. 可設定 HttpOnly、Secure，比較安全。
+登入週期場景：
+1. 適合需要 跨分頁、跨瀏覽器重啟 仍能保持登入的情境。
+例如：登入網站後，關掉瀏覽器再開，仍然自動登入。
+
+---
+interface ApiPath {
+  Test: string;
+}
+
+//物件解構腹值()
+const { Test } = useApiPath<ApiPath>(); 
+//上段程式碼等同於以下程式碼描述
+const apiPath = useApiPath<ApiPath>();
+const Test = apiPath.Test; //Test變數的值就是useApiPath()回傳物件裡的Test屬性
+
+
+const url = Test + "Api_1"; 
+// => http://127.0.0.1:3300/api/Test/Api_1
+
+
+//明天看
+yup
+https://ithelp.ithome.com.tw/m/articles/10298794
+https://ithelp.ithome.com.tw/m/articles/10287841
+https://ithelp.ithome.com.tw/m/articles/10350535
+Fetch
+https://developer.mozilla.org/zh-TW/docs/Web/API/Fetch_API/Using_Fetch
+https://kucw.io/blog/http-get-post/
+
+https://medium.com/@leo122196/%E7%AD%86%E8%A8%98-es6-%E7%9A%84%E8%A7%A3%E6%A7%8B%E8%B3%A6%E5%80%BC-destructuring-assignment-8a1df9eddbd7
