@@ -23,6 +23,24 @@ const User01: User={
 }
 console.log.(User01)
 //Object() {userID: 001, name: "ada", age: 12}
+//繼承介面
+interface Person extends User{
+	//屬性: type;
+}
+---類別實作介面---
+interface Person{
+    name:string;
+    age:number;
+};
+class Student implements Person {
+    constructor(public name: string, public age: number) {}
+
+    getInfo(): string {
+        return `name:${this.name}, age:${this.age}`;
+    }
+}
+let stu = new Student("Alice", 20); //new class_name =>實作實例物件
+console.log(stu.getInfo());
 ================================
 Type (型別別名)
 目的：賦予型別一個新的名稱
@@ -60,10 +78,12 @@ console.log(color);
 
 =================================
 泛型
-目的：為類型提供變數，未帶泛型的陣列可以包含任何內容，但有泛型只可描述所包含的值
+目的：讓type(型別)也變成變數，根據不同的情況套用不同的型別。
+特性：運用泛型則不需要提前告訴TS型別，而是等需要用到時，再指定型別。
 type name = Array<*type*>;
 	type StringArray = Array<string>;
-	type ObjectNameArray = Array<{name: string}>; =>代表使用只能有name: string的結構
+	type ObjectNameArray = Array<{name: string}>; =>代表陣列中必須有name: string的屬性，其他屬性可另外再加
+	type ObjectNameArray = {name:string}[]; //同上意義
 
 interface name<尚未指定的type>{
 	name: string;
@@ -91,6 +111,7 @@ function greet(name: string, date:Date): void{
 }
 greet("test", new Date("2024-01-09"));
 =====================================
+
 
 
 
