@@ -3,9 +3,12 @@ TypeScript
 ================================
 Interface 
 目的：定義物件型別
-不能直接宣告基本型別、元組、列舉與聯合型別
-# 當重複宣告同一個變數時，支援擴展和合併
-*注意: TS裡面用;分隔 JS裡面用:分隔
+-可以重複宣告同名，並自動合併屬性
+-可以定義函式型別
+-可以用class implented interface去建立實例
+-可以運用extends擴充物件結構 (繼承)
+-不可以使用|(聯集型別)和&(交叉型別)、不能直接宣告基本型別、元組、列舉與聯合型別
+*注意: TS裡面用;分隔 JS裡面用,分隔
 interface User{
    userID:number;
    name: string;
@@ -16,19 +19,20 @@ interface User{
 const User01: User={
      userID: 001,
      name: "ada",
-    age: 12,
+     age: 12,
 }
 console.log.(User01)
 //Object() {userID: 001, name: "ada", age: 12}
 ================================
 Type (型別別名)
 目的：賦予型別一個新的名稱
-可以直接宣告基本型別、Array、列舉、聯合型別 (type | type)、物件(obj)以及複雜型別
-不可以重複宣告，不支援擴展，但可以透過 & 交集來組合型別
+-可以使用|(聯集型別)和&(交叉型別)、宣告基本型別、Array、列舉、聯合型別 (type | type)、物件(obj)以及複雜型別
+-可以定義函式型別
+-可以運用組合型別
+-不可以重複宣告同名，不能合併屬性
 type 型別別名 = 型別
 
 ---範例---
-
 type comboType = 1 | 2 | 3 | City.London;
 type comboTupleType = [string, number | boolean, comboType];
 
@@ -87,6 +91,7 @@ function greet(name: string, date:Date): void{
 }
 greet("test", new Date("2024-01-09"));
 =====================================
+
 
 
 
