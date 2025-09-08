@@ -1,0 +1,23 @@
+Class(類別)
+---創建class---
+class Produce {
+	// 類別建構子
+	constructor(key_1, key_2){
+		this.key_1 = value_1;
+		this.key_2 = value_2;
+	}
+	// 創建原型方法
+	toString() {
+		return `Name:${this.key_1}, Price:${this.key_2}`; 
+	}
+}
+//創建新物件
+let hat = new Produce(value_1, value_2);
+//運用extend 繼承物件
+class TaxProduce extend Produce{
+	constructor(key_1, key_2, new_key){
+		super(key_1, key_2);  // 運用super呼叫父類別建構方法的共用屬性
+		new key = value;
+	}
+}
+# 靜態方法 使方法只能透過物件.方法來做存取

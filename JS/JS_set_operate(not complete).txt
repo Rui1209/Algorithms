@@ -1,0 +1,17 @@
+集合操作
+class Produce{
+  constructor(name, price){
+    this.name = name;
+    this.price =price;
+  }
+  toString(){  //用this["name"]來解
+    return `toString Name:${this["name"]},Price:${this["price"]}`;
+  }
+};
+//寫成obj
+let data = {
+  hat: new Produce("hat", 100)
+};
+// object
+data["boots"]=new Produce("boots", 123);
+Object.keys(data).forEach(key => console.log(data[key].toString()))

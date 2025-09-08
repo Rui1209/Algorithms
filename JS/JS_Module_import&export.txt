@@ -1,0 +1,21 @@
+Module
+---各類關鍵字---
+export 匯出函數
+import 匯入指定的函數 from "檔名"
+default 用在module只有一個函式時使用，匯入時可以任意指定名稱
+========================
+//匯出指定函式 => 在此是一個模組
+export function Tax (price){
+	return Number(price)*1.2;
+}
+// 匯入方式需要在指定函式用大括號括起
+import {Tax} from "./tax.js"
+let taxprice = Tax(fun.price);  //使用方式如function
+
+//module中只有一個函式才可使用
+export default function() {
+	//函式表達內容
+}
+import 自訂函數名稱 from "檔名";
+
+# 第19章必看 
