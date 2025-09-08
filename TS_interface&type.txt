@@ -2,7 +2,7 @@ https://clairechang.tw/2024/01/23/typescript/ts-interface-vs-type/
 TypeScript
 ================================
 Interface 
-目的：定義物件型別
+目的：定義物件型別，定義一個物件該有的形狀(可用於class)
 -可以重複宣告同名，並自動合併屬性
 -可以定義函式型別
 -可以用class implented interface去建立實例
@@ -43,7 +43,7 @@ let stu = new Student("Alice", 20); //new class_name =>實作實例物件
 console.log(stu.getInfo());
 ================================
 Type (型別別名)
-目的：賦予型別一個新的名稱
+目的：賦予型別一個新的名稱，重複使用物件形狀型別
 -可以使用|(聯集型別)和&(交叉型別)、宣告基本型別、Array、列舉、聯合型別 (type | type)、物件(obj)以及複雜型別
 -可以定義函式型別
 -可以運用組合型別
@@ -111,6 +111,7 @@ function greet(name: string, date:Date): void{
 }
 greet("test", new Date("2024-01-09"));
 =====================================
+
 
 
 
