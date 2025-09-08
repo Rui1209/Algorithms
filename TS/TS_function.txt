@@ -1,0 +1,48 @@
+=====================================
+特殊
+Partial<T> 可以將interface定義的項目變成可選擇，非必填
+`${變數}`=>將變數寫成字串使用 (用於有指定型別的狀態)
+=====================================
+function //函式定義的語法
+前情提要：JS並不支持function overloading，當兩個重複命名的函式出現時，新的會覆蓋舊的函式
+//TS function 給予參數須符合對應的參數值
+//在函式參數指定時，一定要指定型別，不然會報any type錯誤
+function name(參數類型註解) : 回傳類型註解{
+	邏輯操作內容
+};
+
+function greet(name: string, date:Date): void{
+	console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+greet("test", new Date("2024-01-09"));
+
+---選擇性參數 => 參數?:type---
+const calculateDiscount = (amount: number, discount?: number) =>  //discount為選擇性參數，可給可不給
+  amount * 1.2 - (discount || 0);  //為防止undefined值給函式，故用 || (OR)判斷當discount為undefined時，給0作為值回傳
+
+---給予預設值的選擇性參數(default initialized parameter)---
+const calculateDiscount = (amount: number, discount=0) =>  //discount給予預設值時，也作為選擇性參數
+  amount * 1.2 - (discount);
+ 
+---其餘參數(rest paramter)--- 
+目的：讓參數數量可動態調整
+特殊：請放於參數最後一個項目
+const calculateDiscount = (amount: number, discount: number = 0, ...extraFees: number[]) => //用"...變數名稱"作為其餘參數
+  amount * 1.2 - discount 
+ + extraFees.reduce((total, val) => total + val, 0); //在此函式中，其餘函式的值被相加後加入，如無值則回傳空陣列 
+
+---進階型別---
+void: 用於function的回傳值定義，代表這個function不會回傳任何值。
+nerver: 若是不會正常結束的函式，如拋出例外、無窮迴圈卡住，可以用nerver作為傳回值型別，因此傳回值不可能發生
+	function error (message: string): nerver {
+		throw new Error(message);
+	}
+---type overloading---
+型別多載 
+
+=====================================
+匿名函數
+const name = (arg: type ): type => 
+
+//指定泛型匿名函數
+// IIFE

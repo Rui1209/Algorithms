@@ -1,0 +1,58 @@
+TS 靜態型別
+目的：去除JS開發中，動態型別的不嚴謹問題
+如果用toFixed(數值) 去限定小數範圍的話，輸出會是string
+--靜態型別--
+//盡量不要使用any型別去定義 => 會導致如同JS的不嚴謹問題
+//TS 特性 當沒有將變數指定型別時，會自動採用any型別來定義
+//原始資料型別
+type = number, boolean, string, null, undefined, symbol(唯一key) 
+//物件型別
+object, array, function, Record(key, value)
+
+function func_name(paramter: type //參數型別) : type //回傳值的type{
+	//函式內容
+}
+//物件型別 (泛型)
+Record<key_type, value_type>
+	Record<string, string> //代表一個物件key是字串，value也是字串
+
+---型別聯集---
+目的：定義可傳回不同資料型別的函式
+function func_name(paramter: type): type_1 | type_2{
+	//函式內容
+}
+//可能會遇到的問題
+型別聯集只能使用所有型別都有定義的屬性與方法
+因此當用型別聯集時，若要運用對應型別方法時，建議使用型別斷言(type assertion)
+E.g.
+srting | number 兩個型別中，只有toString()方法可以進行使用，
+以至於對應型別中方法時，會報錯。
+---型別斷言(type assertion)---
+目的：並非型別轉換， 而是當使用型別聯集時，可以運用 "as 指定型別" 來解決引用方法的問題
+let 變數 = func_name(param, param) as type
+
+---防禦型別---
+nerver型別：代表不可能存在的值。可以運用在switch case
+
+特殊需了解型別 (尚未看完)
+null
+unknown //除非用型別斷言指名
+any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,145 @@
+https://clairechang.tw/2024/01/23/typescript/ts-interface-vs-type/
+TypeScript
+================================
+Interface 
+目的：定義物件型別，定義一個物件該有的形狀(可用於class)
+-可以重複宣告同名，並自動合併屬性
+-可以定義函式型別
+-可以用class implented interface去建立實例
+-可以運用extends擴充物件結構 (繼承)
+-不可以使用|(聯集型別)和&(交叉型別)、不能直接宣告基本型別、元組、列舉與聯合型別
+*注意: TS裡面用;分隔 JS裡面用,分隔
+interface User{
+   userID:number;
+   name: string;
+}
+interface User{
+      age: number;
+}
+const User01: User={
+     userID: 001,
+     name: "ada",
+     age: 12,
+}
+console.log.(User01)
+//Object() {userID: 001, name: "ada", age: 12}
+//繼承介面
+interface Person extends User{
+	//屬性: type;
+}
+---類別實作介面---
+interface Person{
+    name:string;
+    age:number;
+};
+class Student implements Person {
+    constructor(public name: string, public age: number) {}
+
+    getInfo(): string {
+        return `name:${this.name}, age:${this.age}`;
+    }
+}
+let stu = new Student("Alice", 20); //new class_name =>實作實例物件
+console.log(stu.getInfo());
+================================
+Type (型別別名)
+目的：賦予型別一個新的名稱，重複使用物件形狀型別
+-可以使用|(聯集型別)和&(交叉型別)、宣告基本型別、Array、列舉、聯合型別 (type | type)、物件(obj)以及複雜型別
+-可以定義函式型別
+-可以運用組合型別
+-不可以重複宣告同名，不能合併屬性
+type 型別別名 = 型別
+
+---範例---
+type comboType = 1 | 2 | 3 | City.London;
+type comboTupleType = [string, number | boolean, comboType];
+
+let result: comboTupleType[] = [
+  ["Apple", 100, 2],
+  ["Oranges", true, City.London],
+];
+
+result.forEach((item: comboTupleType) => {
+  console.log(`Result:${item}`);
+});
+
+
+enum 列舉
+特性：不用再內容和名稱之間加等號。無指定自訂為0
+目的：定義同系列常數，常數保管特定的Value
+//列舉型別的類型
+enum ColorStyle {
+  Red = "red",
+  Blue = "blue",
+}
+type Color = ColorStyle;
+const color: Color = ColorStyle.Red;
+console.log(color);
+
+=================================
+泛型
+目的：讓type(型別)也變成變數，根據不同的情況套用不同的型別。
+特性：運用泛型則不需要提前告訴TS型別，而是等需要用到時，再指定型別。
+type name = Array<*type*>;
+	type StringArray = Array<string>;
+	type ObjectNameArray = Array<{name: string}>; =>代表陣列中必須有name: string的屬性，其他屬性可另外再加
+	type ObjectNameArray = {name:string}[]; //同上意義
+
+interface name<尚未指定的type>{
+	name: string;
+	age: 尚未指定的type;
+}
+const User: name<指定type> = {
+	name: "string context",
+	age: "指定的type context",
+}
+
+=====================================
+特殊
+Partial<T> 可以將interface定義的項目變成可選擇，非必填
+`${變數}`=>將變數寫成字串使用 (用於有指定型別的狀態)
+=====================================
+function
+顯示類型
+//在函式參數指定時，一定要指定型別，不然會報any type錯誤
+function name(參數類型註解) : 回傳類型註解{
+	邏輯操作內容
+};
+
+function greet(name: string, date:Date): void{
+	console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+greet("test", new Date("2024-01-09"));
+=====================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

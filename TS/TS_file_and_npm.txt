@@ -1,0 +1,40 @@
+TS 檔案結構意義
+dist ->typescript 編譯後的輸出結果
+node_modules ->存放應用程式和套件
+src (source) ->存放TS原始碼
+package-lock.json -> 專案套件完整相依性
+package.json ->頂層套件相依設定
+	Dependencies ->發行版所需套件
+	devDependencies ->開發專案使用的工具
+		版本號格式：
+			~：(revision version number)控制版本中最右邊數字
+				~4.3.5表示4.3.3, 4.3.2可接受，但4.4.0版不行
+			^：控制主版本號，^4.3.5表示4.1.0, 4.4.0可接受，但3.0.0版不行
+tsconfig.json ->包含TS編譯器的設定資料
+===================================
+NPM(Node Package Manager )常用指令
+---安裝指令---
+//本地安裝
+npm install
+npm install 套件@版本號
+npm install 套件 //未指定版本號則預設為最新版本
+//開發版本安裝
+npm install --save-dev 套件@版本號
+npm install --D 套件@版本號
+//全域安裝
+npm install --global 套件@版本號
+npm install --g 套件@版本號
+---列出安裝套件---
+//列出本地安裝all版本
+npm list 
+//列出全域安裝的版本
+npm list --global
+npm list --g
+---執行---
+npm run script中項目  //查看package.json裡面的script 項目
+
+noEmitOnError: //只有在ts完全沒偵測到錯誤才會編譯成js
+
+
+
+
