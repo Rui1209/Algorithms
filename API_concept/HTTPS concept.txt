@@ -1,0 +1,113 @@
+瀏覽器交互前導知識
+//主流網路協定為TCP/IP
+---Web API DOM location 方法---
+https://developer.mozilla.org/en-US/docs/Web/API/Location
+目的：表示其所接到物件的位置(URL)。對其所做的變更會反映在其關聯的物件上。
+EX URL: http://localhost:3000/
+location.origin
+	-回傳：字串
+	-內容：包含位置URL來源的位置名稱
+	-範例顯示：http://localhost:3000/
+location.host
+	-回傳：字串
+	-內容：包含主機名稱及port號的URL
+	-範例顯示：localhost:3000/
+location.hostname
+	-回傳：字串
+	-內容：僅包含主機的URL
+	-範例顯示：localhost
+
+---HTTP vs HTTPS---
+全名：超文本傳輸安全協定(hypertext transfer protocol secure)
+目的：為www通訊基礎，網頁做前端及後端溝通時需遵照http協定
+HTTP =>未對內容進行加密
+HTTPS =>對傳輸內容進行加密(SSL/TLS)進行加密
+
+---DNS (Domain name system)---
+名稱：網域名稱系統
+目的：將網址轉換成實際的IP address，才能和TCP進行三次握手
+備註：需要向電信公司進行申請，負責把網域對應到主機
+_子網域_._DNS_
+
+---瀏覽器的渲染內部交互及傳送---
+1. DNS 將 url 解析成 IP 位置，
+2. 瀏覽器(Client)將 IP 包成一個 Request 發送出去。
+3. Request 透過 Internet 的層層協定 發送到 Server 端。
+4. Server 端解析 Request
+5. 在 data center 撈取有關 JavaScript 的資料
+6. 包成一個 Response 回傳。
+7. Client 端開始解析 Response、解析 .html 檔案。
+8. 根據 .html 的檔案內容，一旦發現有 CSS、JS 或 image 等檔案，再發送個檔案的 Request 。
+9. Client 端發送完包含在 html 所有資源的 Request。
+10. 開始下載資源（CSS、JS 或 image）。
+11. 渲染網頁。
+----------                               ------------|
+|              |  -----request---->                  |
+|  client   |                                  Server    |
+|              |<-----respond----                   |
+----------                                ------------
+
+
+---常見的http request method---
+目的：method 
+Get: (獲取資源)
+-目的：跟server要求需要的資料，如要一個連結或圖片
+-特性：單純的request，無加密
+-傳送資料會以query string的方式加在url上
+query string concept:
+https://medium.com/starbugs/%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-query-string-%E5%B0%8F%E7%B4%B0%E7%AF%80-56498dc0645
+
+Post: (提交資源)
+-目的：需要執行一些動作時，會傳送Post request。如登入會員、送出表單
+-特性：資料加密，為特殊動作進行設計
+-獲取指定的資料，放在request body(form data)裡面
+
+Put ：取代掉整個 request。
+Patch：修改部分 request。
+Delete：刪除資源。
+Head：只要獲取 request 的 header，不要 body。
+Option：可以了解 server 提供哪些溝通方法。
+
+
+
+---http status code狀態碼---
+1xx ：稍等
+ -100 Continue：Server 成功接收、但 Client 還要進行一些處理。
+
+2xx：成功
+ -200 OK：成功
+ -204 No Content：成功但沒有回傳的內容（當你發出 Delete 的 request）
+
+3xx：重新導向，用戶端瀏覽器必須採取更多動作才能完成要求。
+ -301 Moved Permanently：資源「永久」移到其他位置，再下一次發出 request 時，瀏覽器直接到新位置。
+ -302 Found（Moved Temporarily）：資源「暫時」移到其他位置。
+ -304 Not Modified：東西跟之前長一樣，可以從快取拿就好。
+
+4xx：Client 端錯誤
+ -400 Bad Request：請求語法錯誤、或資源太大…等等。
+ -401 Unauthorized：未認證，可能需要登入或 Token。
+ -403 Forbidden：沒有權限。
+ -404 Not Found：找不到資源。
+
+5xx：Service 端錯誤
+ -500 Internal Server Error：伺服器出錯，搶票時很可能發生。
+ -501 Not Implemented
+ -502 Bad Gateway：通常是伺服器的某個服務沒有正確執行。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
