@@ -1,0 +1,64 @@
+三元算符(ternary operator)
+條件運算式 ? a : b //當條件運算達成時，true回傳a，false回傳b
+==============
+箭頭函式(arrow function) = lambda experssion
+(param_1, param_2) => {return param_1+param_2}
+(param_1, param_2) => return param_1+param_2
+(param_1, param_2) => param_1+param_2 //若return 只有一個參數，可以省略寫return
+param_1 = param_1+param_1  //若參數只有一個，則可省略參數的小括號
+( ) => 1 //沒有參數
+===============
+For 迴圈
+for (let 變數 = init ; 條件 ; 運算式){
+	//運算式
+}
+===============
+switch(){
+	case 結果_1:
+		//內容
+		break;
+	case 結果_2:
+		break;
+	case 結果_3:
+		break;
+	default:
+		//以上結果皆不相符
+}
+可以寫成，可以讓判斷更直觀
+if (判斷式){ //執行內容; return;};
+if (判斷式){ //執行內容; return;};
+if (判斷式){ //執行內容; return;};
+=================
+解構賦值()
+說明：為JS的ES6語法糖
+array obj的兩種解構模式
+
+---Binding Patterns 綁定賦值---
+-會找到事先宣告的關鍵字，再做解構賦值
+-由於所有變數都共享一個宣告，想要部分唯獨部分重新賦值，就需要解構兩次
+const obj ={a:1, b: {c:2}};
+//共享宣告的樣貌
+const {
+	a, b:{c:d}
+} = obj;
+//解構兩次樣貌
+const {a} = obj;  //a is a constant
+let {
+	b: {c:d},  //d is re-assignable
+}=obj;
+
+---Assignment pattern 賦值模式 ---
+-不會先尋找已宣告的變數，等號右邊的變數都會對應左邊的標的
+const numbers = [];
+const obj = { a: 1, b: 2 };
+({ a: numbers[0], b: numbers[1] } = obj);
+
+---object 也可以是switch寫法---
+//object的中的key&value就是採用hash的概念去實現
+const test = (s:number)=>({
+  1: "A",
+  2: "B",
+  3: "C",
+}[s] || "--")
+
+

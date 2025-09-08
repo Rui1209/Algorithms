@@ -1,0 +1,222 @@
+//注重點：畫面的渲染和資料的處理
+const arr_1 = [];
+for (let i = 0; i < 10; i++) {
+  arr_1.push(i);
+}
+//一般函式
+// function sayHelloFunc(name: string): void {
+//   console.log(`hello ${name}`);
+// }
+// sayHelloFunc("test");
+//匿名函式
+// const sayHelloFunc_1 = (name: string): string => `hello ${name}`;
+// console.log(sayHelloFunc_1("test"));
+
+//1
+const add = (x: number, y: number) => x + y;
+console.log(add(3, 5));
+//2
+const isEven = (x: number): boolean => (x % 2 == 0 ? true : false);
+console.log(isEven(4));
+console.log(isEven(7));
+//3
+const fruits = ["apple", "banana", "mango"];
+const upperFruits = fruits.map((x) => x.toUpperCase());
+console.log(upperFruits);
+//4
+//5
+// const identity = (x: <T>) =>
+
+// const test: number = 1;
+// console.log("test", test);
+// const myArr = new Array(6);
+// myArr.push(5, 7, 1, 4, 3, 2);
+// const SortArr = myArr.sort();
+// // console.log(myArr);
+// // console.log(SortArr);
+
+// const mapArr = arr_1.map((x, y) => x * y); //會顯示一個陣列
+// const reduceArr = arr_1.reduce((X, y) => X + y); //會回傳一個值
+// // const ForeachArr = arr_1.forEach((element) => console.log(element));
+// const everyArr = mapArr.every((x) => x >= 0);
+// // console.log(ForeachArr);
+// console.log(everyArr);
+// console.log(reduceArr);
+// console.log(arr_1);
+
+// const keyArr=[
+//   {key: "test_1", value: 10},
+//   {key: "test_2", value: 20},
+//   {key: "test_3", value: 30},
+// ]
+
+// const keymap = keyArr.map((item) => {
+//   const [keyName] = item.key.replace("test", "name");
+//   return [keyName, Number(item.value)]
+// })
+// console.log(keymap)
+// const keymap = keyArr.map((x) => console.log(x))
+// const sliceNum = testArr.slice(3,-3); //不會刪除原始的切片
+// const spliceNum = testArr.splice(3);  //會刪除原始資料的切片
+// const mapNum = testArr.map((x) => x.toString()); //建立新的array，回傳新的array
+// const filiterNum = testArr.filter((x) => x>5); //過濾掉未通過的func的資料
+// const includesNum = testArr.includes(5); //calledback: bool, goal: search item incloud yes or not
+// const reverseNum = testArr.reverse(); //反轉陣列的資料
+// const reduceNum
+// const forEach = testArr.forEach()
+// console.log(reverseNum)
+// console.log(filiterNum)
+// console.log(testArr)
+// console.log(mapNum)
+
+// import {createApp} from "vue";
+// import {createFetch, type FetchInit} from "gengyun-vue3-lib";
+
+// const fetchOption: FetchInit = {
+//   apiBasePath: "http://127.0.0.1:3300/api",
+//   refreshTokenApi: "http://127.0.0.1:3300/api/RefreshToken",
+//   apiPathDict: {
+//     Test: "/Test/",
+//   },
+//   apiPathCustomRules: {
+//     c1: "{b}{p}{api}?t={timestamp}",
+//   },
+//   refreshTokenRequest: {
+//     JwtToken: undefined,
+//     RefreshToken: undefined,
+//     AppTypeId: 1,
+//   },
+//   userBaseInfo: {
+//     UserId: "$userId",
+//     UserName: "$userName",
+//   },
+//   mainTokenKey: "JwtToken",
+//   refreshTokenErrorHandler: () => {},
+// };
+//聯合型態運用
+// function wrapArray(obj: string | string[]) {
+//   return typeof obj === "string" ? [obj] : obj;
+// }
+// function wrapTest(obj: number | number[]) {
+//   if (typeof obj === "number") {
+//     return [obj];
+//   }
+//   return obj;
+// }
+// const test = 12;
+// console.log(wrapTest(test));
+
+//泛型 => 讓「型別」也變成一個變數
+// type StringArray = Array<string>;
+/* 印出陣列第一個數字
+function getFirstElement(arr: number[]): number {
+  const [firstName] = arr;
+  return firstName;
+}
+*/
+// type ObjectNameArray = Array<{ name: string }>;
+// const myName: ObjectNameArray = [{ name: "test" }, { name: "ada" }];
+// console.log(myName);
+// interface MyTest<Type> {
+//   name: string;
+//   test: Type;
+// }
+// const Usertest: MyTest<string> = {
+//   name: "ada",
+//   test: "test",
+// };
+//函式定義型別，若無定義型別會報any type的錯誤
+function greet(person: string, date: Date): void {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+greet("test", new Date());
+
+// 定義物件型別
+interface Account {
+  accountID: number;
+  accountName: string;
+  accountAge: number;
+}
+const User: Account = {
+  accountID: 123,
+  accountName: "ada",
+  accountAge: 18,
+  //   disable: true,
+  //   CreateAt: "2024.09.02",
+};
+interface User {
+  name: string;
+  id: number;
+}
+// console.log(User);
+
+class UserAccount {
+  name: string;
+  id: number;
+  constructor(name: string, id: number) {
+    this.name = name;
+    this.id = id;
+  }
+}
+// new一個新的物件 class概念
+const user: User = new UserAccount("test", 2);
+
+//宣告基本型別的類型
+type Num = number;
+const num: Num = 123;
+console.log(num);
+
+//宣告Array的類型
+type Arr = [string, number];
+const arr: Arr = ["test", 123];
+console.log(arr);
+
+type ArrTest = [string, number, boolean];
+const testJS: ArrTest[] = [
+  ["ada", 123, true],
+  ["test", 456, false],
+  ["John", 789, true],
+];
+const result = testJS.map(([name, num, able]) => [name, able]);
+
+console.log(result);
+console.log(testJS);
+//物件類別的類型
+type Obj = {
+  id: number;
+  name: string;
+};
+
+const obj: Obj = {
+  id: 111,
+  name: "Daniel",
+};
+console.log(obj);
+//聯合型別的類型 (代表可以是number類型也可以是string類型)
+type UserId = number | string;
+const User01: UserId = 123;
+console.log(User01);
+
+//列舉型別的類型
+enum ColorStyle {
+  Red = "red",
+  Blue = "blue",
+}
+type Color = ColorStyle;
+const color: Color = ColorStyle.Red;
+console.log(color);
+
+//map 物件類型
+const Person = {
+  name: "Jon",
+  age: 12,
+};
+
+type test = {
+  name: string;
+  age: number;
+};
+
+type Jon = keyof test;
+const me: Jon = "age";
+console.log(me);

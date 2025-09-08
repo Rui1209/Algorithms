@@ -1,0 +1,36 @@
+-public
+-src
+ -assets
+ -componoents(Vue: 固定的模板)
+ -interface (ts: 個別區域的屬性定義)
+ -layout (Vue: 切換版面的設定)
+ -pages (Vue: 每個網頁畫面的呈現方式&元件的程式邏輯)
+ -plugins (ts: fetch的部分及插件部分的使用)
+ -router (ts: api的部分)
+ -stores (ts: 主要處理get, action, state)
+ -style (scss: 類似css的樣式)
+ -type (router: )
+vite.config.mts (autoimporter 將項目進行自動導入)
+
+===============================
+//npm -v 10.9.3
+//node -v v22.19.0
+//@vue/cli 5.0.9
+創建一個vutify專案
+CMD
+- npm create vuetify
+  -dir_name
+  -Recommended
+  -Yes
+  -npm
+  -Yes
+==================
+How to used
+位置=  package.json --> script  //可由此查看出npm運行項目所對應的內容
+npm run dev          //執行host，也可以連到外部(要看防火牆是否開啟)
+npm run build       // TS編譯成JS
+npm run preview // 預覽
+==================
+$
+* ->任意版本
+^ ->此版本含以上版本

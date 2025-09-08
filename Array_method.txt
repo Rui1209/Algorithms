@@ -1,0 +1,67 @@
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of
+常用類型
+*string*
+splite()
+*number*
+*obj*
+*Record(key:value)*
+*boolean*
+*undenfine*
+*null*
+*Array*
+//建構array
+const arr_1 = []
+const arr_2 = new Array(arrayLength)
+
+//static method
+Array.isArray(value) //判斷是否為array
+Array.of(item_1, item_2) //建立array項目
+Array=[0,1,2,3,4,5,6,7,8,9]
+
+*prototype method*
+//會改變原陣列
+method
+---合併相關---
+Array_1.concat(array_2) //合併兩個或更多陣列
+const Array = [...Array_name, ...Array_name_2]  //運用展開算符合併兩個陣列
+Array.join(分隔符號) //用指定的分隔符號合併陣列中的字串
+---元素添加及刪除---
+Array.push(element) //添加元素於陣列最後
+Array.pop()  //移除並回傳陣列最後一個元素
+Array.shift()  //移除並回傳陣列第一個元素
+Array.unshift( element_1, element_2) //添加一個或多個element到陣列開頭
+Array.splice(start, delete_count?, add_item?);  //刪除既有元素或加入新元素來
+	Array.splice(1, 0, 9) => 在index1的位置添加數字9，無刪除任何一個數值
+	Array.splice(1, 5) =>刪除index1~5的數值，添加到splice中。原始陣列剩下index0,index6~index10
+---元素的翻轉和排序---
+Array.reverse(); //翻轉陣列
+Array.toReversed(); //反轉陣列但不改變原陣列
+Array.sort(); //對陣列進行排序(由小到大)
+	number.sort((a, b) => b - a) //由大到小
+
+//不會改變原陣列
+
+Array.slice(start_index, end_index-1);   // 擷取指定範圍
+	Array.slice(0,-3)  ==>[0,1,2,3,4,5,6] //切掉index -1,-2,-3
+
+Array.map(callbackFn);' //建立新的陣列，填充每個元素呼叫提供函數的結果
+	Array.map((x) = > x*2);
+*Array.reduce(callbackFn); //收集回傳值去使用，並依序執行函式要求的內容，計算出結果(類似遞迴)
+	Array.reduce((x, y) => x+y);  =>得到兩個參數，進行累加處理
+可以給定一個initvalue
+Array.flat([infinity無限]); //將陣列展平
+Array.with(index, item); //更換index中的元素為item內容
+Array.forEach(callbackFn) //將陣列中的每個元素執行一次(提出元素值)
+
+---測試元素是否符合的方式---
+Array.every(callbackFn) // (AND) 對每個元素執行一個函數，回傳boolean來表示元素通過測試
+	Array.every((X)=> X>40); //如果陣列中項目皆大於40則回傳true
+Array.some(callbackFn)  //(OR) 是否至少有一個元素通過了所提供函數實現的測試
+	Array.some((X)=> X>40);   //如果陣列中任一項目符合，則回傳true
+Array.find(callbackFn)   //對每個元素執行一個函數，回傳對應的值內容
+Array.findIndex(callbackFn) ////對每個元素執行一個函數，回傳對應的index內容
+
+Array.includes(值) //判斷是否有這個item，回傳boolean
+Array.indexOf(值)   //判斷是否有這個item，有則回傳其index，無則回傳-1
+Array.filter((item)=> 條件); // 過濾掉給定數組中提供測試的元素
+
