@@ -1,0 +1,72 @@
+### 條件判斷 ###
+*** v-show ***
+目的：顯示或隱藏模板中的元素
+實現方式：透過CSS的display : none來隱藏
+應用情況：DOM狀態須保留，且狀態可能頻繁更動時
+
+*** v-if ***
+目的：同上
+實現方式：當v-if值為truthy時，element會直接移除，可控制元素的增減
+特色：可以與v-else-if 、v-else 做搭配
+應用情況：條件判斷幾乎不變時，如登入與否
+
+範例
+  <div v-if="isShow">v-if</div>
+  <div v-show="isShow">v-show</div>
+//script
+isShow: true,
+
+### 列表渲染 ###
+*** v-for ***
+目的：將陣列或物件類型的資料進行迭代渲染
+
+v-for="item in items" :key="item" 
+:key讓Vue更直覺追蹤DOM元素，避免重渲染
+★若未加key則會報錯7:5  error  Elements in iteration expect to have 'v-bind:key' directives 
+★不建議用 index 當 key，除非你能保證列表不會被重排或插入，否則可能造成 UI 異常。
+
+範例 
+ <ul>
+    <li v-for="(item, index) in array" :key="item">{{ index }}/{{ item }}</li>
+  </ul>
+//script
+array: ["008", "JS", "TS", "awesome"],
+
+實現頁碼效果
+  <ul class="pagination">
+    <li class="page-item" @click.prevent><a class="page-link" href>&lt;</a></li>
+    <li class="page-item" v-for="page in 10" :key="page" @click.prevent>
+      <a class="page-link" href>{{ page }}</a>
+    </li>
+    <li class="page-item" @click.prevent><a class="page-link" href>&gt;</a></li>
+  </ul>
+a {
+  color: #3eaf7c;
+  text-decoration: none;
+}
+
+.pagination {
+  display: block;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.page-item {
+  cursor: pointer;
+  font-size: 1rem;
+  list-style: none;
+  display: block;
+  width: 40px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #c4ead9;
+  color: #3eaf7c;
+  float: left;
+  margin: 0;
+  margin-right: -1px;
+
+  &:hover {
+    background-color: #eee;
+  }
+}

@@ -1,0 +1,10 @@
+TS 部分
+yup
+promise concept
+耕雲
+vee-validate 擴充包
+defineField = defineModels (由於field方法已消失，因此自定義model方法實現)
+
+
+Vue部分
+common concept

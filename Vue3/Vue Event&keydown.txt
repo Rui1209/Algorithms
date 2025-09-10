@@ -1,0 +1,90 @@
+Vue
+###事件綁定###
+前導知識：請查閱JS DOM(document object model)
+
+*** v-on ***
+目的：操作與管理網頁的事件。
+原理：運用監聽事件的方式，根據監聽是否觸發來判斷是否執行事件函式。
+每次監聽事件發生時，EventListen會建立一個事件物件，包含所有與此事件相關的屬性，與事件相關的方法等
+
+v-on: 事件名稱="運算式"
+@事件名稱="運算式" (語法糖)
+	v-on:click="count++"
+	@click = "count++"
+修飾子運用方式
+v-on: 事件名稱.修飾子 = "運算式"
+@事件名稱.修飾子="運算式" (語法糖)
+
+.stop = JS event.stopProagation()
+->阻擋事件冒泡(event bubbling)
+
+.capture 
+->指定事件以event capture(捕獲)形式觸發，顯觸發外再觸發內
+
+.self
+->只會觸發element自己的事件行為，由子層元素傳遞來的事件則不會觸發
+
+.prevent = JS event.preventDefault
+->阻擋元素預設行為
+ex. v-on:click.prevent ->阻擋所有點擊行為
+
+.passive = JS addEventListener的passive 屬性
+-> 告訴瀏覽器這個事件處理會不會呼叫event.preventDefault來停止瀏覽器的原生行為
+目的：改善scroll的效能，因brower需要判斷scroll事件會不會被prevent，加上此屬性後可以略過此判斷
+//passive無法與prevent一起使用，因為互相矛盾
+
+### keydown ###
+修飾子
+.enter
+.tab
+.delete
+.esc
+.space
+.up
+.down
+.left
+.right
+.ctrl
+.alt
+.shift
+.meta
+.exact (精準判斷)
+	@keydown.enter.exact 
+		->只有在純按"enter"才會實現
+	@keydown.enter
+		->只要有含enter，加上任意鍵都會實現
+範例
+  <input
+    type="text"
+    placeholder="輸入任意文字按下Enter鍵"
+    v-model="msg"
+    @keydown.enter.exact="addToMessage"
+  />
+
+//script部分
+export default {
+  name: "APP",
+  components: {
+    HelloWorld,
+  },
+  data() {
+    return {
+      msg: "",
+      message: [],
+    };
+  },
+  methods: {
+    addToMessage() {
+      this.message.push(this.msg);  //丟msg的內容到message
+      this.msg = "";   //清空msg中的內容
+    },
+  },
+
+
+
+
+
+
+
+
+

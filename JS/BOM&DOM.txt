@@ -1,0 +1,19 @@
+BOM (Browser Object Model) 瀏覽器物件模型
+目的：透過JS直接與瀏覽器溝通或操作，window物件是BOM的核心
+用途：跳轉頁面、控制視窗、對話框
+DOM (document Object Model)文件物件模型
+目的：控制網頁節點與內容的標準
+特色：樹狀結構來表示HTML文件的模型
+
+
+事件需有一個function回應(事件處理函式)，每個function都在監聽是否有事件發生(事件監聽函式)
+
+事件流程(Event Flow)
+定義：網頁元素接收事件的順序，分成"捕獲 Event capture"及"冒泡 Event bubbling"
+*觸發事件時，會先由最外層的根節點傳送到目標(Event capture)，再由內往外傳回去(Event Bubbling)
+document -------Event capture------->Goal
+                 <------Event Bubbling------
+*終止事件傳遞：事件傳遞會停在設置的地方，
+method: e.stopPropagation()
+若在event capture則會阻止事件往下傳遞
+若在event bubbling則會阻止事件往上傳遞

@@ -1,0 +1,126 @@
+Composition lifecycle
+Vue 創建 --> 掛載 --> 更新 --> 銷毀
+setup() -->onBeforeMount ---> onMounted --> onBeforeUpdate --> onUpdate --> onBeforeUnmount --> onUnmounted
+
+### 元件的基本知識 ###
+
+全域概念綁到app.component的root instance上 => 即使同個頁面同時宣告多個root instance，也不會互相汙染
+#全域型元件
+->可以在應用程式所有位置使用
+#區域型元件
+->只能在components: { ...local components} 宣告後的元件才能使用
+
+#元件命名
+->兩個以上的單字來進行命名
+->pascal-case 駝峰式命名 ex. TodoItem
+->kebab-case todo-item
+
+#SFC (single file components) 單一元件檔
+->元件以.vue檔案包裝起來，透過import方式將檔案引入作為子元件
+->包含三個部分1. template、script(定義邏輯)、style(CSS樣式)
+
+# 子元件的data屬性必須以函式來表示
+原因：JS的物件型別式以"傳址(pass by reference)"進行資料傳遞，若沒有用function來回傳另一個物件，則子元件的data會共用同一個狀態，無法更新。
+data(){
+	return{
+		//回傳物件
+	}
+}
+
+### Prop ###
+目的：元件之間的溝通傳遞，用來引用外部的狀態
+prop引用範例請查看https://book.vue.tw/CH2/2-2-communications.html
+---prop data type---
+1. string
+2. Number
+3. Boolean
+4. Array
+5. Object
+6. Date
+7. Function
+8. Symbol
+
+//Prop型態指定
+props: {
+    parentMsg: String,  //方法1.
+    testmsg: {                //方法2. 
+      type: [Number, String],
+      default: 1, //預設值
+      requestd: true, //必須要的屬性
+
+	//自訂驗證規則 (當value小於0時，Invalid prop: custom validator check failed for prop "testmsg".)
+	validator: value => value>0 
+    },
+  },
+
+//物件作為prop傳遞
+-mytest.vue
+<template>
+  <div>
+    <h2>書籍資訊：</h2>
+    <p><strong>書名：</strong> {{ book.title }}</p>
+    <p><strong>作者：</strong> {{ book.author }}</p>
+    <p><strong>價格：</strong> {{ book.price }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "myTest",
+  props: {
+    book: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
+
+-App.vue
+<template>
+  <div>
+    <h1>App 元件</h1>
+    <myTest v-for="book in books" :key="book" :book="book" />
+  </div>
+</template>
+
+<script>
+import myTest from "./components/mytest.vue";
+
+export default {
+  name: "App",
+  components: {
+    myTest,
+  },
+  data() {
+    return {
+      books: [
+        {
+          title: "Vue 3 入門與實戰",
+          author: "王小明",
+          price: "$350",
+        },
+        {
+          title: "Vue 3 入門與實戰",
+          author: "王小明",
+          price: "$350",
+        },
+      ],
+    };
+  },
+};
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

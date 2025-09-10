@@ -1,0 +1,38 @@
+表單綁定  
+<input v-model="message" placeholder="edit me" />
+  <br />
+  <textarea v-model="message"></textarea>
+  <!-- radio單選框  -->
+  <input type="radio" id="one" v-model="pick" value="1" />
+  <label for="one">one</label>
+  <input type="radio" id="two" v-model="pick" value="2" />
+  <label for="two">Two</label>
+  <!-- <p>{{ pick }}</p> -->
+  <br />
+  <!-- checkbox 複選框 -->
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedName" />
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="Mary" value="Mary" v-model="checkedName" />
+  <label for="Mary">Mary</label>
+  <!-- select 下拉式選單 -->
+  <select v-model="selected">
+    <option disabled value="請選擇">請選擇</option>
+    <option value="台北市">台北市</option>
+    <option value="新北市">新北市</option>
+  </select>
+
+  <p>{{ selected || "未選擇" }}</p>
+
+  <!-- <p>Message is:{{ message }}</p> -->
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <input v-model="test" />
+  <div>{{ test }}</div>
+模板綁定  
+<div v-once>{{ test }}</div>
+  <div v-pre>{{ test }}</div>
+樣式綁定  
+<input
+    type="text"
+    v-model.trim="error_message"
+    :class="{ error: error_message.length > 10 }"
+  />
